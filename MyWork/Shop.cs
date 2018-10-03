@@ -7,9 +7,8 @@ namespace MyWork
 {
     public class Shop
     {
-        public string ShopName { get; set; }
-        private Item[] listOfItems;
-        public int LastAvailableIndex { get; private set;}
+        private Item[] listOfItems;//Массив товаров с которым мы будем работать
+        public int LastAvailableIndex { get; private set;}//последний доступный элемент (нужен для функции Append)
         
 
 
@@ -25,7 +24,7 @@ namespace MyWork
             set {
                 if (value is Item)
                 {
-                    if (index+1 > listOfItems.Length)
+                    if (index+1 > listOfItems.Length)//проверяет размер массива, если что увеличивает на один размер
                     {
                         Array.Resize(ref listOfItems, listOfItems.Length + 1);
                         listOfItems[index] = value;
@@ -38,7 +37,7 @@ namespace MyWork
             }
         }
 
-        public void PrintList()
+        public void PrintList()//выводит список товаров данного Shop 
         {
             
             for (int i = 0; i < listOfItems.Length; i++)
@@ -48,7 +47,7 @@ namespace MyWork
             }
         }
 
-        public void Append(Item item)
+        public void Append(Item item)//Добавление в конец листа передаваемый товар
         {
             if (item is Item)
             {
@@ -57,13 +56,14 @@ namespace MyWork
             }
         }
 
-        public Shop FilterByCategory(Category category)
+        public Shop FilterByCategory(Category category) //Создает новый шоп и заносит туда товары которые имеют 
+            //нужную категорию, затем мы уже работаем с отфильтрованным шопом.
         {
             Shop filtredListItems = new Shop();
 
             for (int i = 0; i < listOfItems.Length; i++)
             {
-                if(Category.Compare(category, listOfItems[i].category))
+                if(Category.Compare(category, listOfItems[i].Category))
                 {
                     filtredListItems.Append(listOfItems[i]);
                 }

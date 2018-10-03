@@ -10,7 +10,6 @@ namespace MyWork
     {
         public string Name { get; set; }
         public int Price { get; set; }
-        public int Count { get; set; }
-        public Category category { get; set; }
+        public Category Category { get; set; }
     }
 }

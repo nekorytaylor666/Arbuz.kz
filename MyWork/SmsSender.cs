@@ -13,8 +13,8 @@ namespace MyWork
 
         const string accountSid = "ACfa1dc641f65b4553982e12d1ed28e783";
         const string authToken = "de34e33c7f9562be46da7dbe240ec7dc";
-        const string numFrom = "+19596666446";
-        public string numTo { private get; set; }
+        const string numFrom = "+19596666446"; // номер данный твилио по умолчанию, больше никакой не работает
+        public string NumTo { private get; set; } 
         public string smsCode;
         Random random = new Random();
 
@@ -26,7 +26,7 @@ namespace MyWork
         public MessageSender(string numTo)
         {
             smsCode = random.Next().ToString();
-            this.numTo = numTo;
+            NumTo = numTo;
         }
 
         public void SendMessage()
@@ -37,15 +37,15 @@ namespace MyWork
                 from: new Twilio.Types.PhoneNumber(numFrom),
                 body: "Ваш код подтверждения:  " + smsCode,
                 statusCallback: new Uri("http://postb.in/r4jrqx2e"),
-                to: new Twilio.Types.PhoneNumber(numTo)
+                to: new Twilio.Types.PhoneNumber(NumTo)
             );
 
             Console.WriteLine(message.Sid);
         }
 
-        public bool CheckCode(string value)
+        public bool CheckCode(string value)//Проверяет код отправленный и код введенный 
         {
-            if (string.Equals(value, smsCode))
+            if (String.Equals(value, smsCode))
                 return true;
             else
                 return false;

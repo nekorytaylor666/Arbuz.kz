@@ -18,7 +18,7 @@ namespace MyWork
             Verified = false;
         }
 
-        public bool SmsValidation()
+        public bool SmsValidation() 
         {
             MessageSender sender = new MessageSender("+77783973990");
             sender.SendMessage();

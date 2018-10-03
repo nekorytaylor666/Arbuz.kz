@@ -9,8 +9,10 @@ namespace MyWork
     public class Category
     {
         public string Name { get; set; }
+        
 
-        static public bool Compare(Category category1, Category category2)
+        static public bool Compare(Category category1, Category category2)//Функция сравнивающая две категории
+            //и говорящая равны или нет
         {
             if(String.Equals(category1.Name, category2.Name))
             {

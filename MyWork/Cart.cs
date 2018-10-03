@@ -8,30 +8,30 @@ namespace MyWork
 {
     public class Cart
     {
-        private Item[] listOfItems;
-        int index = 0;
-        public int Sum { get; private set; }
+        private Item[] listOfItems;//Массив товаров в корзина
+        int LastAvailableIndex = 0;//Последний доступный индекс , нужен для Append
+        public int Sum { get; private set; } //Сумма всех цен товаров в корзине
 
         public Cart()
         {
             listOfItems = new Item[1];
         }
 
-        public Item this[int index]
+        public Item this[int LastAvailableIndex]
         {
-            get { return listOfItems[index]; }
+            get { return listOfItems[LastAvailableIndex]; }
             set
             {
                 if (value is Item)
                 {
-                    if (index + 1 > listOfItems.Length)
+                    if (LastAvailableIndex + 1 > listOfItems.Length)
                     {
                         Array.Resize(ref listOfItems, listOfItems.Length + 1);
-                        listOfItems[index] = value;
+                        listOfItems[LastAvailableIndex] = value;
                     }
                     else
                     {
-                        listOfItems[index] = value;
+                        listOfItems[LastAvailableIndex] = value;
                     }
                 }
             }
@@ -51,7 +51,7 @@ namespace MyWork
                 }
             }
        
-        public int SumItems()
+        public int SumItems()//Сумма всех элементов в корзине
         {
             for (int i = 0; i < listOfItems.Length; i++)
             {
@@ -61,18 +61,18 @@ namespace MyWork
             return Sum;
         }
 
-        public void ClearCart()
+        public void ClearCart()//Очистка корзины после оплаты
         {
             listOfItems = new Item[1];
             Sum = 0;
         }
 
-        public void Append(Item item)
+        public void Append(Item item)//добавление в конец корзины товара
         {
             if (item is Item)
             {
-                this[index] = item;
-                index++;
+                this[LastAvailableIndex] = item;
+                LastAvailableIndex++;
             }
         }
 
