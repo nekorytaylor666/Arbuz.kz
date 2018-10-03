@@ -39,10 +39,11 @@ namespace MyWork
 
         public void PrintList()
             {
-            if(listOfItems[0] == null)
-            {
-                Console.WriteLine("Пусто в корзине");
-            }
+                if(listOfItems[0] == null)
+                {
+                    Console.WriteLine("Пусто в корзине");
+                return;
+                }
                 for (int i = 0; i < listOfItems.Length; i++)
                 {
                     if(listOfItems[i] != null)
